@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>tech.go9</groupId>
+		<artifactId>spine</artifactId>
+		<version>0.1.0-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>spine-demo</artifactId>
+
+	<name>SPrINg Extensions Demo</name>
+
+	<properties>
+
+		<!-- liquibase-maven-plugin properties -->
+		<liquibase-maven-plugin.changeLogFile>database/changelog/hotels-changelog-master.xml</liquibase-maven-plugin.changeLogFile>
+		<liquibase-maven-plugin.package>tech.go9.spine.sample.api.domain</liquibase-maven-plugin.package>
+
+		<!-- hibernate-enhance-maven-plugin properties -->
+		<hibernate-enhance-maven-plugin.enableLazyInitialization>false</hibernate-enhance-maven-plugin.enableLazyInitialization>
+		<hibernate-enhance-maven-plugin.enableDirtyTracking>true</hibernate-enhance-maven-plugin.enableDirtyTracking>
+		<hibernate-enhance-maven-plugin.enableAssociationManagement>true</hibernate-enhance-maven-plugin.enableAssociationManagement>
+		<hibernate-enhance-maven-plugin.enableExtendedEnhancement>false</hibernate-enhance-maven-plugin.enableExtendedEnhancement>
+
+		<!-- spring-boot-maven-plugin properties -->
+		<spring-boot-maven-plugin.mainClass>tech.go9.spine.demo.Application</spring-boot-maven-plugin.mainClass>
+
+	</properties>
+
+	<dependencies>
+
+		<!-- main dependencies -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>tech.go9</groupId>
+			<artifactId>spine-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>tech.go9</groupId>
+			<artifactId>spine-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<!-- test dependencies -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+
+</project>

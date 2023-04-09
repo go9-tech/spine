@@ -1,0 +1,15 @@
+<configuration>
+
+	<include resource="org/springframework/boot/logging/logback/defaults.xml" />
+	<include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+
+	<root level="info">
+		<appender-ref ref="CONSOLE" />
+	</root>
+
+	<logger name="tech.alpe" level="DEBUG" />
+	<logger name="com.github.dockerjava" level="WARN" />
+	<logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="TRACE" />
+	<logger name="org.testcontainers" level="INFO" />
+
+</configuration>

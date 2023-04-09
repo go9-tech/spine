@@ -1,0 +1,117 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+		http://www.liquibase.org/xml/ns/dbchangelog
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+	<changeSet author="thiago.assis" id="1604346949979-1">
+		<createSequence incrementBy="50"
+			sequenceName="city_sequence" startValue="23" />
+	</changeSet>
+
+	<changeSet author="thiago.assis" id="1604346949979-2">
+		<createSequence incrementBy="50"
+			sequenceName="hotel_sequence" startValue="28" />
+	</changeSet>
+
+	<changeSet author="thiago.assis" id="1604346949979-3">
+		<createSequence incrementBy="50"
+			sequenceName="review_sequence" startValue="64" />
+	</changeSet>
+
+	<changeSet author="thiago.assis" id="1604346949979-4">
+		<createTable tableName="city">
+			<column name="id" type="BIGINT">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="cityPK" />
+			</column>
+			<column name="country" type="VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="map" type="VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="name" type="VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="state" type="VARCHAR(255)">
+			</column>
+		</createTable>
+	</changeSet>
+
+	<changeSet author="thiago.assis" id="1604346949979-5">
+		<createTable tableName="hotel">
+			<column name="id" type="BIGINT">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="hotelPK" />
+			</column>
+			<column name="address" type="VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="name" type="VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="zip" type="VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="city_id" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+
+	<changeSet author="thiago.assis" id="1604346949979-6">
+		<createTable tableName="review">
+			<column name="id" type="BIGINT">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="reviewPK" />
+			</column>
+			<column name="check_in_date" type="TIMESTAMP">
+				<constraints nullable="false" />
+			</column>
+			<column name="details" type="VARCHAR(5000)" />
+			<column name="idx" type="INT">
+				<constraints nullable="false" />
+			</column>
+			<column name="rating" type="INT">
+				<constraints nullable="false" />
+			</column>
+			<column name="title" type="VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="trip_type" type="INT">
+				<constraints nullable="false" />
+			</column>
+			<column name="hotel_id" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+
+	<changeSet author="thiago.assis" id="1604346949979-7">
+		<addForeignKeyConstraint
+			baseColumnNames="city_id" baseTableName="hotel"
+			constraintName="FKf1iabdv6bi2yohh9h48wce42x" deferrable="false"
+			initiallyDeferred="false" referencedColumnNames="id"
+			referencedTableName="city" validate="true" />
+	</changeSet>
+
+	<changeSet author="thiago.assis" id="1604346949979-8">
+		<addForeignKeyConstraint
+			baseColumnNames="hotel_id" baseTableName="review"
+			constraintName="FKi0ly7ivbh8ijdgoi7cwtuoavt" deferrable="false"
+			initiallyDeferred="false" referencedColumnNames="id"
+			referencedTableName="hotel" validate="true" />
+	</changeSet>
+
+	<changeSet author="thiago.assis" id="1604346949979-9" >
+		<sqlFile dbms="h2, oracle" encoding="utf8" endDelimiter="\nGO"
+			path="classpath:database/changelog/1.0.0/hotels-load-1.0.0.sql"
+			splitStatements="true" stripComments="true"  />
+	</changeSet>
+
+</databaseChangeLog>
