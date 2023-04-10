@@ -1,0 +1,19 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - 'main'
+      - 'hotfix/**'
+      - 'releases/**'
+      - 'develop'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: go9tech/ci-v1:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Build
+        run: /opt/pipelines/build.sh
